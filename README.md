@@ -1,6 +1,6 @@
-# 🔗 Unir PDFs Online Gratis — Fusionar PDF
+# PDF Merge — Free Online Tool
 
-**Free PDF Merge tool.** Combine multiple PDF files into a single document with drag & drop reordering. Upload as many PDFs as you need, set the order, and download the merged result instantly. No sign-up, no ads, 100% client-side.
+**PDF Merge.** Merge multiple PDFs into one. Reorder with drag & drop. No sign-up, 100% in browser. No sign-up, no ads, 100% client-side.
 
 🌐 **Demo en vivo / Live demo:** [miguelacm.es/tools/pdf-merge](https://miguelacm.es/tools/pdf-merge)
 
@@ -13,13 +13,9 @@
 
 ## ✨ Features
 
-- 📄 **Múltiples PDFs / Multiple PDFs:** Upload and merge as many PDF files as needed
-- 🔀 **Drag & drop reorder / Reordenación:** Drag PDF cards or use arrows to set the merge order
-- 📊 **Tamaño total / Total size:** Shows individual and combined file sizes before merging
-- ⚡ **Fusión instantánea / Instant merge:** Processes entirely in the browser — no upload wait
-- ⚠️ **Validación / Validation:** Requires at least 2 PDFs; rejects non-PDF files automatically
-- 🔒 **Sin servidor / Zero server:** All processing via pdf-lib — files never leave your device
-- 📦 **Embebible / Embeddable:** Use as iframe on any website
+- **🔀 Any order:** Drag and drop files to set the exact merge order.
+- **🧩 Lossless pages:** Every page is copied intact into the final document.
+- **🔒 100% private:** Merging runs locally in your browser.
 
 ---
 
@@ -38,13 +34,12 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://miguelacm.es/tools/pdf-merge
+NEXT_PUBLIC_EMBED_URL=https://miguelacm.es/embed/pdf-merge
 ```
 
 ---
 
 ## 📦 Embed on your website
-
-### Iframe (plug & play)
 
 ```html
 <iframe
@@ -61,11 +56,11 @@ NEXT_PUBLIC_SITE_URL=https://miguelacm.es/tools/pdf-merge
 
 ```html
 <a href="https://miguelacm.es/tools/pdf-merge" target="_blank" rel="noopener">
-  Unir PDFs gratis por MACM
+  PDF Merge — free tool by MACM
 </a>
 ```
 
-> 💡 The link option generates a real backlink that benefits the project. Recommended if your platform supports custom HTML.
+> 💡 The link option generates a real backlink that benefits the project.
 
 ---
 
@@ -73,11 +68,11 @@ NEXT_PUBLIC_SITE_URL=https://miguelacm.es/tools/pdf-merge
 
 | Technology | Version | Purpose |
 |---|---|---|
-| [Next.js](https://nextjs.org) | 16 | React framework + SSG |
+| [Next.js](https://nextjs.org) | 16 | React framework |
 | [TypeScript](https://www.typescriptlang.org) | 5 | Type safety |
 | [Tailwind CSS](https://tailwindcss.com) | 4 | Styling |
-| [pdf-lib](https://github.com/Hopding/pdf-lib) | 1 | PDF manipulation and merging |
 | [react-icons](https://react-icons.github.io/react-icons/) | 5 | Icons |
+| `pdf-lib` | — | Core logic |
 
 ---
 

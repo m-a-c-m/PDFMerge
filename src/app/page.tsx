@@ -1,134 +1,71 @@
-import PDFMerge from "@/components/PDFMerge";
-import { MdPictureAsPdf } from "react-icons/md";
+import type { Metadata } from "next";
+import Tool from "@/components/PDFMerge";
 
-const EMBED_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://miguelacm.es/tools/pdf-merge";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://miguelacm.es/tools/pdf-merge";
+const EMBED_URL = process.env.NEXT_PUBLIC_EMBED_URL || "https://miguelacm.es/embed/pdf-merge";
+
+export const metadata: Metadata = {
+  title: "PDF Merge — Free Online Tool",
+  description: "Merge multiple PDFs into one. Reorder with drag & drop. No sign-up, 100% in browser.",
+  alternates: { canonical: SITE_URL },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "PDF Merge",
+  url: SITE_URL,
+  description: "Merge multiple PDFs into one. Reorder with drag & drop. No sign-up, 100% in browser.",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Web",
+  inLanguage: "en",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  author: { "@type": "Person", name: "Miguel Ángel Colorado Marin", url: "https://miguelacm.es" },
+};
 
 export default function Home() {
   return (
-    <main className="min-h-screen px-4 py-12 sm:px-6">
-      <div className="mx-auto max-w-4xl">
-
-        <div className="mb-10 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm text-primary">
-            <MdPictureAsPdf className="text-base" />
-            Herramienta gratuita · Free tool
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <main className="min-h-screen px-4 py-12">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm text-primary">Free tool · Open source</div>
+            <h1 className="mb-3 text-4xl font-bold text-white md:text-5xl">PDF Merge</h1>
+            <p className="mb-2 text-lg text-text-muted">Merge multiple PDFs into one. Reorder with drag & drop. No sign-up, 100% in browser.</p>
+            <p className="text-sm text-text-muted/60">By{" "}<a href="https://miguelacm.es" target="_blank" rel="noopener noreferrer" className="gradient-text font-medium hover:opacity-80 transition-opacity">MACM</a>{" "}· No sign-up · No ads</p>
           </div>
-          <h1 className="mb-4 text-4xl font-bold text-white sm:text-5xl">
-            <span className="gradient-text">Unir PDFs</span>
-            <br />
-            <span className="text-2xl font-medium text-text-muted sm:text-3xl">Fusionar múltiples PDFs en uno</span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-base text-text-muted">
-            Combina varios archivos PDF en un único documento con drag & drop.
-            Reordena los PDFs antes de fusionarlos.
-            100% en el navegador — tus documentos nunca salen de tu dispositivo.
-          </p>
-        </div>
 
-        <div className="glass rounded-2xl border border-border/20 p-5 sm:p-8">
-          <PDFMerge />
-        </div>
+          <div className="glass rounded-2xl border border-border/20 p-6 md:p-8"><Tool locale="en" /></div>
 
-        <div className="mt-12 glass rounded-2xl border border-border/20 p-6 sm:p-8">
-          <h2 className="mb-6 text-2xl font-bold text-white">
-            ¿Cómo unir PDFs? / How to merge PDFs?
-          </h2>
-          <ol className="space-y-5">
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {[
-              {
-                n: "1",
-                t: "Añade los PDFs / Add the PDFs",
-                d: "Arrastra los archivos PDF sobre la zona de carga o haz clic para seleccionarlos. Puedes añadir tantos PDFs como necesites. Solo se aceptan archivos PDF. / Drag PDF files onto the drop zone or click to select them. Only PDF files are accepted.",
-              },
-              {
-                n: "2",
-                t: "Ordena los PDFs / Reorder the PDFs",
-                d: "Arrastra las tarjetas para cambiar el orden en que aparecerán en el PDF final. El número de posición se muestra en cada tarjeta. También puedes usar las flechas arriba/abajo. / Drag cards to change the order they will appear in the final PDF.",
-              },
-              {
-                n: "3",
-                t: "Fusiona y descarga / Merge and download",
-                d: "Cuando tengas al menos 2 PDFs, haz clic en 'Fusionar y descargar'. El PDF resultante se descargará automáticamente como 'merged.pdf'. / When you have at least 2 PDFs, click Merge & download. The result downloads automatically.",
-              },
-              {
-                n: "4",
-                t: "Repite si es necesario / Repeat if needed",
-                d: "Puedes limpiar la lista con el botón 'Limpiar' y empezar de nuevo con una nueva combinación de PDFs. No hay límite de uso. / Clear the list and start again with a new combination. No usage limits.",
-              },
-            ].map((s) => (
-              <li key={s.n} className="flex gap-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
-                  {s.n}
-                </span>
-                <div>
-                  <h3 className="mb-1 font-semibold text-white">{s.t}</h3>
-                  <p className="text-sm leading-relaxed text-text-muted">{s.d}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div className="mt-8 glass rounded-2xl border border-border/20 p-6 sm:p-8">
-          <h2 className="mb-6 text-2xl font-bold text-white">
-            Preguntas frecuentes / FAQ
-          </h2>
-          <div className="space-y-6">
-            {[
-              {
-                q: "¿Cuántos PDFs puedo fusionar? / How many PDFs can I merge?",
-                a: "No hay un límite fijo. La herramienta fusiona todos los PDFs que añadas en el orden que elijas. El límite práctico depende de la memoria disponible en tu navegador. / No hard limit. The tool merges all PDFs you add in the order you choose.",
-              },
-              {
-                q: "¿Los PDFs protegidos con contraseña funcionan? / Do password-protected PDFs work?",
-                a: "No. Los PDFs cifrados o protegidos con contraseña no pueden ser leídos por la librería pdf-lib en el navegador. Deberás desprotegerlos primero con otra herramienta. / No. Password-protected or encrypted PDFs cannot be processed. Remove the protection first.",
-              },
-              {
-                q: "¿Se conservan los marcadores, formularios y capas del PDF? / Are bookmarks, forms and layers preserved?",
-                a: "La fusión copia las páginas de cada PDF pero no garantiza la preservación de marcadores, campos de formulario interactivos o capas complejas. El contenido visual de las páginas se mantiene completamente. / Page merging preserves visual content. Complex interactive elements like bookmarks and forms may not be preserved.",
-              },
-              {
-                q: "¿El orden en el PDF final es el que veo en pantalla? / Is the final order what I see on screen?",
-                a: "Sí. Las páginas del PDF final aparecerán exactamente en el orden en que ves las tarjetas. Puedes reordenarlas arrastrando o usando las flechas antes de fusionar. / Yes. The final PDF pages appear exactly in the order shown on screen.",
-              },
-              {
-                q: "¿Mis PDFs se suben a algún servidor? / Are my PDFs uploaded to any server?",
-                a: "No. Todo el procesamiento ocurre en tu navegador usando la librería pdf-lib. Tus documentos nunca abandonan tu dispositivo y no se envía nada a ningún servidor externo. / No. Everything runs locally in the browser. Your files never leave your device.",
-              },
+            { icon: "🔀", title: "Any order", desc: "Drag and drop files to set the exact merge order." },
+            { icon: "🧩", title: "Lossless pages", desc: "Every page is copied intact into the final document." },
+            { icon: "🔒", title: "100% private", desc: "Merging runs locally in your browser." },
             ].map((item) => (
-              <div key={item.q}>
-                <h3 className="mb-2 font-semibold text-white">{item.q}</h3>
-                <p className="text-sm leading-relaxed text-text-muted">{item.a}</p>
+              <div key={item.icon + item.title} className="glass rounded-xl border border-border/15 p-5">
+                <span className="mb-3 block text-2xl">{item.icon}</span>
+                <h3 className="mb-1 font-semibold text-white">{item.title}</h3>
+                <p className="text-sm text-text-muted leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
-        </div>
 
-        <div className="mt-8 glass rounded-2xl border border-border/20 p-6 sm:p-8">
-          <h2 className="mb-4 text-xl font-bold text-white">
-            Incrusta en tu web / Embed on your website
-          </h2>
-          <p className="mb-4 text-sm text-text-muted">
-            Integra este fusionador de PDFs en cualquier página web con un simple iframe:
-          </p>
-          <pre className="overflow-x-auto rounded-lg bg-surface/80 p-4 text-xs text-text-muted">
-            <code>{`<iframe
-  src="${EMBED_URL}"
-  width="100%"
-  height="700"
-  frameborder="0"
-  loading="lazy"
-  style="border-radius:12px"
-  title="PDF Merge — MACM"
-></iframe>`}</code>
-          </pre>
-          <p className="mt-3 text-xs text-text-muted/60">
-            Herramienta embebible gracias a <code className="text-primary/80">frame-ancestors *</code>.
-            Sin cookies, sin tracking, 100% gratuita.
-          </p>
+          <div className="mt-8 rounded-xl border border-border/20 bg-white/3 p-6">
+            <h2 className="mb-2 font-semibold text-white">Embed this tool on your website</h2>
+            <p className="mb-4 text-sm text-text-muted">Add PDF Merge to any page with a simple iframe, or link to it with attribution.</p>
+            <div className="mb-3 rounded-lg bg-black/40 p-3">
+              <p className="mb-1 text-xs text-text-muted/60">Iframe (plug & play):</p>
+              <code className="text-xs text-green-400 break-all">{`<iframe src="${EMBED_URL}" width="100%" height="700" style="border:none;border-radius:12px;" title="PDF Merge — miguelacm.es" loading="lazy"></iframe>`}</code>
+            </div>
+            <div className="rounded-lg bg-black/40 p-3">
+              <p className="mb-1 text-xs text-text-muted/60">Link with attribution (recommended for backlink):</p>
+              <code className="text-xs text-green-400 break-all">{`<a href="${SITE_URL}" target="_blank" rel="noopener">PDF Merge — free tool by MACM</a>`}</code>
+            </div>
+          </div>
         </div>
-
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
